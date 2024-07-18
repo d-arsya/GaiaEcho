@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('followees',function(Blueprint $table){
+            $table->id();
+            $table->foreignId('target');
+            $table->foreignId('source');
+            $table->unique(['target','source']);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('followees');
     }
 };
