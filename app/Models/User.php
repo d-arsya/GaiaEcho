@@ -11,37 +11,45 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+   
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'role',
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function followers(){
+        return $this->hasMany(Followee::class,'target','id');
+    }
+    public function followings(){
+        return $this->hasMany(Followee::class,'source','id');
+    }
+    public function reports(){
+        return $this->hasMany(Report::class,'user_id','id');
+    }
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+    public function bookmarks(){
+        return $this->hasMany(Bookmark::class);
+    }
+    public function recomendations(){
+        $followed = $this->followings->pluck('target');
+        $followed[] = $this->id;
+        return User::whereNotIn('id', $followed)->get();
+    }
+    public function followed_posts(){
+        $followed = $this->followings()->pluck('target');
+        return Post::whereIn('user_id',$followed)->get();
     }
 }
