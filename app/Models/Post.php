@@ -22,7 +22,13 @@ class Post extends Model
     public function likes(){
         return $this->hasMany(Like::class);
     }
+    public function liked($id){
+        return Like::where('user_id','=',$id)->where("post_id","=",$this->id)->get()->count()!=0;
+    }
     public function bookmarks(){
         return $this->hasMany(Bookmark::class);
+    }
+    public function bookmarked($id){
+        return Bookmark::where('user_id','=',$id)->where("post_id","=",$this->id)->get()->count()!=0;
     }
 }

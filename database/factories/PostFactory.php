@@ -17,9 +17,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1,10),
+            'user_id' => fake()->numberBetween(2,5),
             'text' => fake()->text(500),
-            'image' => fake()->word(),
+            'image' => fake()->randomElement(['','https://picsum.photos/400/300']),
         ];
     }
 }

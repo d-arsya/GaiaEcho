@@ -8,15 +8,9 @@ export default {
   theme: {
     extend: {
       colors:{
-        white:{
-          1: '#FFFAFA'
-        },
-        mainGreen:{
-          1:'#55D917'
-        },
-        black:{
-          1:'#0c0c0c'
-        },
+        white: '#FFFAFA',
+        mainGreen:'#55D917',
+        black:'#0c0c0c',
         green:{
           1:'#caf3b7'
         },

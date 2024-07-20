@@ -1,27 +1,40 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RegisterController;
+use App\Models\Article;
+use App\Models\Bookmark;
+use App\Models\Followee;
+use App\Models\Like;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.home',[
-        "active"=>'home'
+Route::get('/c', function () {
+    return view('welcome',[
+        "active"=>"admin"
     ]);
 });
-Route::get('/c', function () {
-    return view('welcome');
-});
+Route::get('/logout',[LoginController::class,"logout"]);
 Route::middleware(['guest'])->group(function(){
+    Route::get('/login',[LoginController::class,"index"])->name('login');
     Route::get('/login', function () {
         return view('pages.login',['active'=>'login']);
     })->name('login');
-    Route::get('/register', function () {
-        return view('pages.register',['active'=>'register']);
-    });
+    Route::post('/login',[LoginController::class,"authenticate"]);
+
+    Route::get('/register',[RegisterController::class,"index"]);
+    Route::get('/setup',[RegisterController::class,"setup"]);
 });
+Route::post('/register',[RegisterController::class,"register"]);
+Route::post('/setup',[RegisterController::class,"store"]);
+
 Route::middleware(['auth'])->group(function(){
+    Route::get('/', [HomeController::class,"index"]);
     Route::get('/reports', function () {
         return view('pages.reports',[
-            "active"=>'reports'
+            "active"=>'report'
         ]);
     });
     Route::get('/profile', function () {
@@ -37,12 +50,43 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/profile/{username}', function () {
         return view('pages.profile');
     });
+    Route::post('/follow', function (Request $req) {
+        Followee::create([
+            "source"=>auth()->user()->id,
+            "target"=>$req["user"],
+        ]);
+        return redirect("/");
+    });
+    Route::post('/like', function (Request $req) {
+        Like::create([
+            "user_id"=>auth()->user()->id,
+            "post_id"=>$req["post"],
+        ]);
+        return redirect("/");
+    });
+    Route::post('/unlike', function (Request $req) {
+        Like::where("user_id","=",auth()->user()->id)->where("post_id","=",$req["post"])->delete();
+        return redirect("/");
+    });
+    Route::post('/unbookmark', function (Request $req) {
+        Bookmark::where("user_id","=",auth()->user()->id)->where("post_id","=",$req["post"])->delete();
+        return redirect("/");
+    });
+    Route::post('/bookmark', function (Request $req) {
+        Bookmark::create([
+            "user_id"=>auth()->user()->id,
+            "post_id"=>$req["post"],
+        ]);
+        return redirect("/");
+    });
     
 });
+Route::get('/admin',[AdminController::class,"index"]);
 
 Route::get('/articles', function () {
     return view('pages.articles',[
-        "active"=>'articles'
+        "active"=>'articles',
+        "articles"=>Article::all()
     ]);
 });
 Route::get('/calculator', function () {

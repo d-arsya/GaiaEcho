@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'avatar'
     ];
     protected $hidden = [
         'password',
@@ -46,7 +47,7 @@ class User extends Authenticatable
     public function recomendations(){
         $followed = $this->followings->pluck('target');
         $followed[] = $this->id;
-        return User::whereNotIn('id', $followed)->get();
+        return User::whereNotIn('id', $followed)->where('role','!=','admin')->get();
     }
     public function followed_posts(){
         $followed = $this->followings()->pluck('target');
