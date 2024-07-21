@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         // Report::factory(30)->create();
         // Article::factory(20)->create();
-        Post::factory(15)->create();
+        // Post::factory(15)->create();
         // Followee::factory(60)->create();
         // Bookmark::factory(50)->create();
         // Comment::factory(50)->create();

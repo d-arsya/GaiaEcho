@@ -16,7 +16,7 @@ class HomeController extends Controller
         }
         return view("pages.home",[
             "active"=>"home",
-            "posts"=>Post::all()
+            "posts"=>Post::latest()->get()
         ]);
     }
 }
