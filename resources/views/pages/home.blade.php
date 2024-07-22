@@ -6,8 +6,10 @@
             <h1 class="font-bold text-lg">Post something</h1>
             <div class="my-3 w-full h-px bg-black"></div>
             <div class="flex flex-row items-center">
-                <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : auth()->user()->avatar }}"
-                    class="w-10 rounded-full" alt="">
+                <div class="flex justify-center items-center overflow-hidden w-10 h-10 rounded-full">
+                    <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : auth()->user()->avatar }}"
+                        class="w-full h-full" alt="">
+                </div>
                 <div class="relative ml-4 w-full inline">
                     <img src="{{ asset('assets/photos.svg') }}" class="absolute right-4 top-3 w-4 h-4 text-gray-500"
                         alt="">
@@ -164,7 +166,7 @@
                 <textarea autofocus class="bg-white p-3 w-full h-auto focus:outline-none focus:ring-none" id="autoResizeTextarea"
                 rows="1" type="text" name="text" placeholder="What's on your mind" id=""></textarea>
             </div>
-            <div class="hidden mt-3 w-full max-h-96 rounded-lg overflow-hidden flex justify-center items-center">
+            <div class="hidden mt-3 w-full max-h-72 rounded-lg overflow-hidden flex justify-center items-center">
                 <img id="thumbnail" src="" class="w-full" alt="">
             </div>
             <div class="mt-3 h-px bg-gray-300 w-full"></div>

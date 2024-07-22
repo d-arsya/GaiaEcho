@@ -5,12 +5,16 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReportController;
 use App\Models\Article;
 use App\Models\Bookmark;
 use App\Models\Followee;
+use App\Models\Post;
+use App\Models\Report;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::middleware(['guest'])->group(function(){
     Route::get('/login',[LoginController::class,"index"])->name('login');
@@ -24,7 +28,7 @@ Route::middleware(['guest'])->group(function(){
 });
 Route::middleware(['auth'])->group(function(){
     Route::get('/logout',[LoginController::class,"logout"]);
-    Route::get('/reports', function () {
+    Route::get('/report', function () {
         return view('pages.reports',[
             "active"=>'report'
         ]);
@@ -71,7 +75,24 @@ Route::middleware(['auth'])->group(function(){
         ]);
         return redirect("/");
     });
+    Route::get('/post/delete/{id}', function ($id) {
+        $rep = Post::find($id);
+        if($rep->image!=""){
+            Storage::delete('/public'.'/'.$rep->image);
+        }
+        $rep->delete();
+        return redirect('/');
+    });
+    Route::get('/report/delete/{id}', function ($id) {
+        $rep = Report::find($id);
+        if($rep->image!=""){
+            Storage::delete('/public'.'/'.$rep->image);
+        }
+        $rep->delete();
+        return redirect('/report');
+    });
     Route::post('/post', [PostController::class,"store"]);
+    Route::post('/report', [ReportController::class,"store"]);
     Route::get('/admin',[AdminController::class,"index"]);    
 });
 

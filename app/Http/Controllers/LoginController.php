@@ -25,7 +25,7 @@ class LoginController extends Controller
                 return redirect()->intended('/');
             }
         }
-        return back()->with("error","gagal");
+        return back()->withErrors(["email"=>"Periksa kembali email dan kata sandi anda"]);
     }
     public function logout(Request $req){
         Auth::logout();

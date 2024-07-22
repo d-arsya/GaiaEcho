@@ -53,4 +53,7 @@ class User extends Authenticatable
         $followed = $this->followings()->pluck('target');
         return Post::whereIn('user_id',$followed)->get();
     }
+    public function last_reports(){
+        return Report::latest()->where('user_id',$this->id)->take(5)->get();
+    }
 }
