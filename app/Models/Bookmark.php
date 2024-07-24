@@ -16,6 +16,6 @@ class Bookmark extends Model
         return $this->belongsTo(User::class);
     }
     public function post(){
-        return $this->hasOne(Post::class);
+        return $this->hasOne(Post::class,'id','post_id');
     }
 }

@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('container')
 <div class="p-4 w-full bg-white rounded-lg">
-    <h1 class="text-xl font-bold">Report</h1>
-    <h1 class="text-md">Submit your report</h1>
+    <h1 class="text-xl font-bold">Laporan</h1>
+    <h1 class="text-md">Kirim laporan</h1>
     <div class="mt-5 flex flex-row justify-between items-center">
         <div class="flex flex-row gap-3">
             <div class="w-12 h-12 rounded-full flex justify-center items-center overflow-hidden">
@@ -40,8 +40,8 @@
           <input type="file" name="image" id="imgInput" class="hidden">
         </div>
         <div>
-            <span id="reportChar" class="text-gray-400 text-xs font-thin mr-3">0 / 3000 Character</span>
-            <input class="rounded-full py-1 px-2 bg-white border text-mainGreen border-mainGreen border-2 text-xs hover:bg-mainGreen hover:text-white" type="submit" value="Submit">
+            <span id="reportChar" class="text-gray-400 text-xs font-thin mr-3">0 / 3000 Karakter</span>
+            <input class="rounded-full py-1 px-2 bg-white border text-mainGreen border-mainGreen border-2 text-xs hover:bg-mainGreen hover:text-white" type="submit" value="Lapor">
             <input type="text" id="locForm" name="location" class="hidden">
         </form>
        </div>
@@ -64,7 +64,7 @@
         </div>
             <div class="mt-3 w-full">
                 <input autofocus class="bg-white p-3 w-full h-auto focus:outline-none focus:ring-none"
-                rows="1" type="text" name="text" placeholder="Where it does" id="locPop">
+                rows="1" type="text" name="text" placeholder="Dimana kejadiannya" id="locPop">
             </div>
             <div class="mt-3 h-px bg-gray-300 w-full"></div>
         </div>
@@ -86,7 +86,7 @@
         this.style.height = this.scrollHeight + "px";
     });
         reportDetail.addEventListener('keyup',function(e){
-            document.getElementById("reportChar").innerHTML = `${e.target.value.length} / 3000 Characters`
+            document.getElementById("reportChar").innerHTML = `${e.target.value.length} / 3000 Karakter`
         })
         imgReport.addEventListener("change", function(event) {
             const file = event.target.files[0];

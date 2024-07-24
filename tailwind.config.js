@@ -6,11 +6,14 @@ export default {
     "./resources/views/**/*.vue",
   ],
   theme: {
+    fontFamily:{
+      'sans': ['Jakarta Sans', 'sans-serif'],
+    },
     extend: {
       colors:{
         white: '#FFFAFA',
         mainGreen:'#55D917',
-        black:'#0c0c0c',
+        black:'#0C0C0C',
         green:{
           1:'#caf3b7'
         },

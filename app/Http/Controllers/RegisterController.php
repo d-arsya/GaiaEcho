@@ -20,6 +20,9 @@ class RegisterController extends Controller
     }
     public function register(Request $request){
         $messages = [
+            'email.unique'=>'Email telah digunakan',
+            'email.email'=>'Email tidak valid',
+            'email.min'=>'Email harus memiliiki minimal 10 karakter',
             'password.min' => 'Password harus memiliki minimal 8 karakter.',
             'password.regex' => 'Password harus mengandung huruf kecil, huruf besar, angka, dan simbol.',
         ];

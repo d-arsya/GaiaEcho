@@ -35,6 +35,9 @@ class User extends Authenticatable
     public function followings(){
         return $this->hasMany(Followee::class,'source','id');
     }
+    public function followed_by(){
+        return $this->followers->pluck('source')->contains(auth()->user()->id);
+    }
     public function reports(){
         return $this->hasMany(Report::class,'user_id','id');
     }

@@ -16,7 +16,7 @@ class HomeController extends Controller
         }
         return view("pages.home",[
             "active"=>"home",
-            "posts"=>Post::latest()->get()
+            "posts"=>Post::latest()->paginate(5)
         ]);
     }
 }

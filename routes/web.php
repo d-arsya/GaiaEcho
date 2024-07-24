@@ -9,6 +9,7 @@ use App\Http\Controllers\ReportController;
 use App\Models\Article;
 use App\Models\Bookmark;
 use App\Models\Followee;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Report;
 use App\Models\Like;
@@ -33,47 +34,71 @@ Route::middleware(['auth'])->group(function(){
             "active"=>'report'
         ]);
     });
-    Route::get('/profile', function () {
-        return view('pages.profile',[
-            "active"=>'profile'
-        ]);
-    });
     Route::get('/management', function () {
         return view('pages.management',[
             "active"=>'management'
         ]);
     });
-    Route::get('/profile/{username}', function () {
-        return view('pages.profile');
+    Route::get('/profile/{username}', function ($username){
+        return view('pages.profile',[
+            "active"=>"profile",
+            "view"=>'posts',
+            "profile"=>User::where('username',$username)->get()[0]
+        ]);
+    });
+    Route::get('/profile/{username}/bookmarks', function ($username){
+        return view('pages.profile',[
+            "active"=>"profile",
+            "view"=>'bookmarks',
+            "profile"=>User::where('username',$username)->get()[0]
+        ]);
+    });
+    Route::get('/profile/{username}/followers', function ($username){
+        return view('pages.profile',[
+            "active"=>"profile",
+            "view"=>'followers',
+            "profile"=>User::where('username',$username)->get()[0]
+        ]);
+    });
+    Route::get('/profile/{username}/followings', function ($username){
+        return view('pages.profile',[
+            "active"=>"profile",
+            "view"=>'followings',
+            "profile"=>User::where('username',$username)->get()[0]
+        ]);
     });
     Route::post('/follow', function (Request $req) {
         Followee::create([
             "source"=>auth()->user()->id,
             "target"=>$req["user"],
         ]);
-        return redirect("/");
+        return back();
+    });
+    Route::post('/unfollow', function (Request $req) {
+        Followee::where('source',auth()->user()->id)->where('target',$req['user'])->delete();
+        return back();
     });
     Route::post('/like', function (Request $req) {
         Like::create([
             "user_id"=>auth()->user()->id,
             "post_id"=>$req["post"],
         ]);
-        return redirect("/");
+        return back();
     });
     Route::post('/unlike', function (Request $req) {
         Like::where("user_id","=",auth()->user()->id)->where("post_id","=",$req["post"])->delete();
-        return redirect("/");
+        return back();
     });
     Route::post('/unbookmark', function (Request $req) {
         Bookmark::where("user_id","=",auth()->user()->id)->where("post_id","=",$req["post"])->delete();
-        return redirect("/");
+        return back();
     });
     Route::post('/bookmark', function (Request $req) {
         Bookmark::create([
             "user_id"=>auth()->user()->id,
             "post_id"=>$req["post"],
         ]);
-        return redirect("/");
+        return back();
     });
     Route::get('/post/delete/{id}', function ($id) {
         $rep = Post::find($id);
@@ -102,7 +127,7 @@ Route::post('/setup',[RegisterController::class,"store"]);
 Route::get('/articles', function () {
     return view('pages.articles',[
         "active"=>'articles',
-        "articles"=>Article::inRandomOrder()->get()
+        "articles"=>Article::inRandomOrder()->paginate(5)
     ]);
 });
 Route::get('/calculator', function () {

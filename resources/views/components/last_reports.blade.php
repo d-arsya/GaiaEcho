@@ -1,8 +1,8 @@
 <?php
 use Carbon\Carbon;
 ?>
-<a class="float-end text-md font-bold text-gray-400" href="">See all</a>
-<h1 class="text-lg font-bold text-gray-300">Your report</h1>
+<a class="float-end text-md font-bold text-gray-400" href=""></a>
+<h1 class="text-lg font-bold text-gray-300">Laporan anda</h1>
 @foreach (auth()->user()->last_reports() as $report)
     <div class="mt-4 flex flex-row mb-1 rounded-lg justify-between">
         <div class="flex flex-row space-x-2">
@@ -12,7 +12,7 @@ use Carbon\Carbon;
                 <h1 class="text-md font-bold text-black">
                     {{ substr($report->title, 0, 30) }}
                 </h1>
-                <h2 class="text-xs text-gray-300">{{ $report->date=Carbon::parse($report->date)->format('d F Y') }}</h2>
+                <h2 class="text-xs text-gray-300">{{ $report->date=Carbon::parse($report->date)->translatedFormat('d F Y') }}</h2>
 
             </div>
         </div>

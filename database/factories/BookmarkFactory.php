@@ -18,13 +18,13 @@ class BookmarkFactory extends Factory
     {
         static $combos = [];
 
-        $post_id = $this->faker->numberBetween(1, 100);
-        $user_id = $this->faker->numberBetween(1, 10);
+        $post_id = $this->faker->numberBetween(1, 40);
+        $user_id = $this->faker->numberBetween(2, 5);
 
         // Pastikan kombinasi post_id-user_id unik
         while (in_array([$post_id, $user_id], $combos)) {
-            $post_id = $this->faker->numberBetween(1, 100);
-            $user_id = $this->faker->numberBetween(1, 10);
+            $post_id = $this->faker->numberBetween(1, 40);
+            $user_id = $this->faker->numberBetween(2, 5);
         }
 
         // Tambahkan kombinasi unik ke dalam array
