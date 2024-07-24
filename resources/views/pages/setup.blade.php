@@ -36,12 +36,12 @@
                         <input type="file" name="image" accept="image/png, image/jpeg, image/jpg" id="imgInput" class="hidden">
                         <div>
                             <label for="name" class="mt-6 ml-4 block mb-1 text-sm font-medium text-gray-900">Nama</label>
-                            <input type="text" value="{{ old('name') }}" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block w-full py-2.5 px-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan nama" required="">
+                            <input type="text" value="{{ old('name') }}" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block w-full py-2.5 px-4" placeholder="Masukkan nama" required="">
                         </div>
                         <div class="relative">
                             <label for="email" class="ml-4 block mb-1 text-sm font-medium text-gray-900">Username</label>
                             <span class="absolute left-4 top-8 text-gray-300">@</span>
-                            <input type="text" value="" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block w-full py-2.5 pl-10 pr-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan username" required="">
+                            <input type="text" value="" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block w-full py-2.5 pl-10 pr-4" placeholder="Masukkan username" required="">
                             @error('username')
                             <p class="text-xs text-red-500 italic ml-4 mt-1">{{ $message }}</p>
                                 
