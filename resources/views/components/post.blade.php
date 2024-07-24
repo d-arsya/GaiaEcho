@@ -1,7 +1,7 @@
 <div class="mb-4 p-4 w-full bg-white rounded-lg">
     <div class="flex flex-row h-10 justify-between items-center">
         <span class="flex flex-row">
-            <img src="{{ $post->user->avatar == null ? asset('assets/default_avatar.png') : $post->user->avatar }}"
+            <img src="{{ $post->user->avatar == null ? asset('assets/default_avatar.png') : Storage::url($post->user->avatar) }}"
                 class="w-10 rounded-full mr-3" alt="">
             <span>
                 <a href="/profile/{{ $post->user->username }}" class="font-bold">{{ $post->user->name }}</a>
