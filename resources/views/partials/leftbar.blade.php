@@ -71,8 +71,8 @@
           </li>
        </ul>       
        <div class="w-64 fixed bottom-20 p-3">
-        <p class="text-sm text-gray-300">About | Help | Terms and service | Privacy | Contact</p>
-        <p class="mt-3 text-sm text-gray-500">@2024 GAIAECHO FROM OTJUL</p>
+        <p class="text-xs text-gray-300">About | Help | Terms and service<br>| Privacy | Contact</p>
+        <p class="mt-3 text-xs text-gray-500">@2024 GAIAECHO FROM OTJUL</p>
        </div>
 
     </div>
