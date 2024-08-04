@@ -12,14 +12,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
    
-    protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-        'role',
-        'avatar'
-    ];
+    protected $guarded = [    ];
     protected $hidden = [
         'password',
     ];
@@ -57,6 +50,6 @@ class User extends Authenticatable
         return Post::whereIn('user_id',$followed)->get();
     }
     public function last_reports(){
-        return Report::latest()->where('user_id',$this->id)->take(5)->get();
+        return Report::latest()->where('user_id',$this->id)->take(9)->get();
     }
 }

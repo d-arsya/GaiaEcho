@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use App\Models\Article;
 use App\Models\Bookmark;
 use App\Models\Followee;
@@ -17,56 +18,55 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\PengelolaController;
+
+Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
+
+Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email');
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
+
+Route::post('reset-password', [NewPasswordController::class, 'store'])
+    ->name('password.update');
+
 Route::middleware(['guest'])->group(function(){
-    Route::get('/login',[LoginController::class,"index"])->name('login');
-    Route::get('/login', function () {
-        return view('pages.login',['active'=>'login']);
-    })->name('login');
-    Route::post('/login',[LoginController::class,"authenticate"]);
-    
-    Route::get('/register',[RegisterController::class,"index"]);
-    Route::get('/setup',[RegisterController::class,"setup"]);
+    Route::get('/login',[UserController::class,"viewLogin"])->name('login');
+    Route::post('/login',[UserController::class,"authenticate"]);    
+    Route::get('/register',[UserController::class,"viewRegister"]);
+    Route::post('/register',[UserController::class,"register"]);
+    Route::get('/setup',[UserController::class,"setup"]);
+    Route::post('/setup',[UserController::class,"store"]);
 });
 Route::middleware(['auth'])->group(function(){
-    Route::get('/logout',[LoginController::class,"logout"]);
-    Route::get('/report', function () {
-        return view('pages.reports',[
-            "active"=>'report'
-        ]);
-    });
     Route::get('/management', function () {
         return view('pages.management',[
             "active"=>'management'
         ]);
     });
-    Route::get('/profile/{username}', function ($username){
-        return view('pages.profile',[
-            "active"=>"profile",
-            "view"=>'posts',
-            "profile"=>User::where('username',$username)->get()[0]
-        ]);
-    });
-    Route::get('/profile/{username}/bookmarks', function ($username){
-        return view('pages.profile',[
-            "active"=>"profile",
-            "view"=>'bookmarks',
-            "profile"=>User::where('username',$username)->get()[0]
-        ]);
-    });
-    Route::get('/profile/{username}/followers', function ($username){
-        return view('pages.profile',[
-            "active"=>"profile",
-            "view"=>'followers',
-            "profile"=>User::where('username',$username)->get()[0]
-        ]);
-    });
-    Route::get('/profile/{username}/followings', function ($username){
-        return view('pages.profile',[
-            "active"=>"profile",
-            "view"=>'followings',
-            "profile"=>User::where('username',$username)->get()[0]
-        ]);
-    });
+    Route::post('/profile/edit',[UserController::class,'edit']);
+    Route::get('/profile/{username}',[UserController::class,'profile']);
+    Route::get('/profile/{username}/bookmarks', [UserController::class,'bookmarks']);
+    Route::get('/profile/{username}/followers', [UserController::class,'followers']);
+    Route::get('/profile/{username}/followings', [UserController::class,'followings']);
+    
+    Route::get('/logout',[UserController::class,"logout"]);
+    Route::post('/post', [PostController::class,"store"]);
+    Route::get('/post/delete/{id}', [PostController::class,'destroy']);
+    Route::get('/post/{username}/comments/{id}', [PostController::class,"comments"]);
+    Route::post('/post/comments/{id}', [PostController::class,"postComment"]);
+
+    Route::get('/report', [ReportController::class,'index']);
+    Route::post('/report', [ReportController::class,"store"]);
+    Route::get('/report/{username}/{id}', [ReportController::class,"detail"]);
+    Route::get('/report/delete/{id}',[ReportController::class,'destroy']);
+    Route::get('/admin',[AdminController::class,"index"]);    
+    Route::get('/pengelola',[PengelolaController::class,"index"]);    
+    
     Route::post('/follow', function (Request $req) {
         Followee::create([
             "source"=>auth()->user()->id,
@@ -100,30 +100,9 @@ Route::middleware(['auth'])->group(function(){
         ]);
         return back();
     });
-    Route::get('/post/delete/{id}', function ($id) {
-        $rep = Post::find($id);
-        if($rep->image!=""){
-            Storage::delete('/public'.'/'.$rep->image);
-        }
-        $rep->delete();
-        return redirect('/');
-    });
-    Route::get('/report/delete/{id}', function ($id) {
-        $rep = Report::find($id);
-        if($rep->image!=""){
-            Storage::delete('/public'.'/'.$rep->image);
-        }
-        $rep->delete();
-        return redirect('/report');
-    });
-    Route::post('/post', [PostController::class,"store"]);
-    Route::post('/report', [ReportController::class,"store"]);
-    Route::get('/admin',[AdminController::class,"index"]);    
 });
 
 Route::get('/', [HomeController::class,"index"]);
-Route::post('/register',[RegisterController::class,"register"]);
-Route::post('/setup',[RegisterController::class,"store"]);
 Route::get('/articles', function () {
     return view('pages.articles',[
         "active"=>'articles',

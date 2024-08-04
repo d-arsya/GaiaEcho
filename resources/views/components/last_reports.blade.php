@@ -9,9 +9,9 @@ use Carbon\Carbon;
             <img src="{{ asset('assets/task.svg') }}" alt=""
             class="w-8">
             <div>
-                <h1 class="text-md font-bold text-black">
+                <a href="/report/{{ auth()->user()->username }}/{{ $report->id }}" class="text-md font-bold text-black">
                     {{ substr($report->title, 0, 30) }}
-                </h1>
+                </a>
                 <h2 class="text-xs text-gray-300">{{ $report->date=Carbon::parse($report->date)->translatedFormat('d F Y') }}</h2>
 
             </div>

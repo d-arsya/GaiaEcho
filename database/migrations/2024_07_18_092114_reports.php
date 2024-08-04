@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('date');
             $table->text('text');
             $table->string('image');
+            $table->date('accepted')->nullable();
+            $table->date('processed')->nullable();
+            $table->date('finished')->nullable();
             $table->timestamps();
         });
     }

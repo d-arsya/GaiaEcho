@@ -10,8 +10,11 @@ class HomeController extends Controller
 {
     public function index(){
         if(Auth::user()){
-            if(Auth::user()->role=="admin"){
+            $role = Auth::user()->role;
+            if($role=="admin"){
                 return redirect("/admin");
+            }else if($role="pengelola"){
+                return redirect('/pengelola');
             }
         }
         return view("pages.home",[

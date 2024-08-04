@@ -58,10 +58,10 @@
         </div>
     @endif
     <div class="mt-5 flex flex-column">
-        <span class="mr-5">
+        <a href="/post/{{ $post->user->username }}/comments/{{ $post->id }}" class="mr-5">
             <img src="{{ asset('assets/comment.svg') }}" class="w-6 inline" alt="">
             <p class="inline">{{ $post->comments->count() }} komentar</p>
-        </span>
+        </a>
         @auth
             
         <span class="mr-5">

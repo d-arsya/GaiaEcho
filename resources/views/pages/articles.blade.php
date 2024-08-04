@@ -30,7 +30,7 @@
           <img src="{{ $article->source_image }}" class="rounded-full w-6 mb-2 inline" alt="">
           <a href="{{ parse_url($article->link)['scheme'].'://'.parse_url($article->link)['host'] }}" class="text-mainGreen text-md font-bold">{{ $article->source }}</a>
           <span class="text-md text-gray-300 font-semibold">{{ $article->created_at->diffForHumans() }}</span>
-          <a href="#">
+          <a href="{{ $article->link }}">
              <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{ $article->title }}</h5>
           </a>
           <p class="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">{{ $article->text }} <a target="_blank" href="{{ $article->link }}" class="text-mainGreen">baca</a></p>
