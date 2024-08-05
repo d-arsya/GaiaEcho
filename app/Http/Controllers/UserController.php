@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
+use App\Models\Comment;
+use App\Models\Followee;
+use App\Models\Like;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +26,12 @@ class UserController extends Controller
             "password"=>['required']
         ]);
         if (Auth::attempt($credentials)) {
-            $req->session()->regenerate(); 
-            if(Auth::user()->role=="admin"){
+            $req->session()->regenerate();
+            $role = Auth::user()->role;
+            if($role=="admin"){
                 return redirect()->intended('/admin');
+            }elseif($role=='pengelola'){
+                return redirect()->intended('/pengelola');
             }else{
                 return redirect()->intended('/');
             }
@@ -139,5 +147,11 @@ class UserController extends Controller
         }
         $user->save();
         return redirect("/profile"."/".$user->username);
+    }
+    public function destroy(Request $request,$username){
+        $user = User::where('username','=',$username)->where('id','=',$request['id'])->first();
+        $user->delete();
+        return back();
+        
     }
 }

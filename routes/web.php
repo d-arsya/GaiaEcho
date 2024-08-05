@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
@@ -62,10 +63,15 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/report', [ReportController::class,'index']);
     Route::post('/report', [ReportController::class,"store"]);
-    Route::get('/report/{username}/{id}', [ReportController::class,"detail"]);
     Route::get('/report/delete/{id}',[ReportController::class,'destroy']);
+    Route::get('/reports/{username}/{id}', [ReportController::class,"detail"]);
     Route::get('/admin',[AdminController::class,"index"]);    
+    Route::get('/admin/users',[AdminController::class,"users"]);    
+    Route::get('/admin/articles',[AdminController::class,"articles"]);    
+    Route::post('/admin/articles',[ArticleController::class,"store"]);    
+    Route::post('/articles/delete',[ArticleController::class,'destroy']);
     Route::get('/pengelola',[PengelolaController::class,"index"]);    
+    Route::post('/user/delete/{username}',[UserController::class,'destroy']);
     
     Route::post('/follow', function (Request $req) {
         Followee::create([
@@ -103,12 +109,7 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::get('/', [HomeController::class,"index"]);
-Route::get('/articles', function () {
-    return view('pages.articles',[
-        "active"=>'articles',
-        "articles"=>Article::inRandomOrder()->paginate(5)
-    ]);
-});
+Route::get('/articles', [ArticleController::class,'index']);
 Route::get('/calculator', function () {
     return view('pages.calculator',[
         "active"=>'calculator'

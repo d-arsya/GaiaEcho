@@ -386,13 +386,7 @@ class DatabaseSeeder extends Seeder
             "email" => "kamaluddin.arsyad17@gmail.com",
             "role" => "admin"
         ],
-        [
-            "name" => "Pengelola",
-            "avatar" => "",
-            "username" => "Pengelola",
-            "email" => "arsyadkamaluddin@gmail.com",
-            "role" => "pengelola"
-        ],
+        
         [
             "name" => "Kamaluddin Arsyad Fadllillah",
             "avatar" => "avatar/arsyad.png",
@@ -420,6 +414,13 @@ class DatabaseSeeder extends Seeder
             "username" => "ahmadluthfi",
             "email" => "luthfi@gmail.com",
             "role" => "user"
+        ],
+        [
+            "name" => "Pengelola",
+            "avatar" => "",
+            "username" => "Pengelola",
+            "email" => "arsyadkamaluddin@gmail.com",
+            "role" => "pengelola"
         ],
     ];
     private $comments = [

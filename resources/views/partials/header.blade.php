@@ -9,8 +9,11 @@
          </svg>
        </div>
      </div>
-     <div class="w-10 h-10 flex justify-center items-center rounded-full bg-gray-200">
-      <img src="{{ asset('assets/lonceng.svg') }}" class="w-6" alt="">
+     <div class="w-10 h-10 flex justify-center items-center rounded-full bg-gray-200 overflow-hidden">
+      @auth
+      <img class="w-full" src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : Storage::url(auth()->user()->avatar) }}" class="w-6" alt="">
+          
+      @endauth
      </div>
    </div>
  </nav>

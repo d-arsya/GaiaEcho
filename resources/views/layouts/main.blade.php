@@ -7,13 +7,13 @@
   @vite('resources/css/app.css')
   
 </head>
-<body class="bg-grey-1">
+<body class="bg-grey-1 md:p-0 pb-24">
   
   
 @include('partials.header')
 @include('partials.leftbar')
 
-<div class="ml-56 mr-96 mt-16 p-4 pr-8 pt-8">
+<div class="md:ml-56 md:mr-96 mt-16 p-4 pr-8 pt-8">
   @yield('container')
 </div>
 @include('partials.rightbar')

@@ -14,7 +14,7 @@
         <h1 class="mt-4 text-3xl font-bold text-center">{{ $profile->name }}</h1>
         <h1 class="mt-2 text-lg text-gray-400 text-center"><span>@</span>{{ $profile->username }}</h1>
         <h1 class="mt-4 text-2xl font-bold text-center text-mainGreen"><img class="inline mr-3 w-10" src="{{ asset('assets/point.svg') }}" alt="">{{ $profile->point }} Poin</h1>
-        <div class="flex justify-evenly flex-row w-full px-48 my-3">
+        <div class="flex justify-evenly flex-row w-full my-3">
             <div class="flex flex-row gap-2">
                 <h1 class="text-black font-semibold text-xl">{{ $profile->posts->count() }}</h1>
                 <a href="/profile/{{ $profile->username }}" class="text-gray-400 text-lg font-semibold">Postingan</a>
@@ -118,7 +118,7 @@
     </div>
 @endsection
 <div id="postPopup" class="hidden z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center">
-    <div class="w-5/12 bg-white rounded-lg shadow shadow-lg">
+    <div class="md:w-5/12 w-11/12 bg-white rounded-lg shadow shadow-lg">
         <div class="flex p-2 gap-2 font-bold text-md">
             <img onclick="closePopup()" src="{{ asset('assets/back.svg') }}" class="w-6" alt="">
             Edit Profile

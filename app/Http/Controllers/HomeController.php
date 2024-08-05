@@ -13,7 +13,7 @@ class HomeController extends Controller
             $role = Auth::user()->role;
             if($role=="admin"){
                 return redirect("/admin");
-            }else if($role="pengelola"){
+            }elseif($role=="pengelola"){
                 return redirect('/pengelola');
             }
         }
