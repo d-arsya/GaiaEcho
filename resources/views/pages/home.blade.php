@@ -7,7 +7,7 @@
             <div class="my-3 w-full h-px bg-black"></div>
             <div class="flex flex-row items-center">
                 <div class="flex justify-center items-center overflow-hidden w-10 h-10 rounded-full">
-                    <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : auth()->user()->avatar }}"
+                    <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : Storage::url(auth()->user()->avatar) }}"
                         class="w-full h-full" alt="">
                 </div>
                 <div class="relative ml-4 w-full inline">

@@ -3,7 +3,7 @@
         @include('components.user_profile')        
     </div>
     <div class="h-full rounded-lg pb-4 overflow-y-auto bg-white">
-        <div class="px-4 pt-4">
+        <div class="px-12 md:px-4 pt-4">
             @if ($active == 'articles')
                 @include('components.recomended_articles')
             @elseif($active == 'report')

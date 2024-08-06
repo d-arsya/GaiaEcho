@@ -5,8 +5,8 @@
     <table class="w-full">
         <thead class="bg-white">
             <th class="text-black py-3 text-2xl font-bold rounded-ss-md">Judul</th>
-            <th class="text-black py-3 text-2xl font-bold">Jenis</th>
-            <th class="text-black py-3 text-2xl font-bold rounded-se-md">Sumber</th>
+            <th class="text-black py-3 hidden md:table-cell text-2xl font-bold">Jenis</th>
+            <th class="text-black py-3 hidden md:table-cell text-2xl font-bold rounded-se-md">Sumber</th>
         </thead>
         <tbody>
             @foreach ($articles as $article)
@@ -16,9 +16,9 @@
                 <input type="number" name="id" class="hidden" value="{{$article->id}}">
                 <input id="delete" type="submit" class="hidden">
                 </form>
-                <td class="px-3 "><label for="delete" href="/"><img src="{{asset('assets/bin.svg')}}" alt="" class="inline mr-3"></label><a href="{{$article->link}}">{{$article->title}}</a></td>
-                <td class="px-3 py-2 text-center">{{str_contains($article->link,'youtube.com')?'Video':'Artikel'}}</td>
-                <td class="px-3 text-end">{{$article->source}}</td>
+                <td class="md:py-0 py-3 px-3 flex flex-row"><label for="delete" href="/"><img src="{{asset('assets/bin.svg')}}" alt="" class=" inline mr-3"></label><a href="{{$article->link}}">{{$article->title}}</a></td>
+                <td class="hidden md:table-cell px-3 py-2 text-center">{{str_contains($article->link,'youtube.com')?'Video':'Artikel'}}</td>
+                <td class="hidden md:table-cell px-3 text-end">{{$article->source}}</td>
             </tr>
             @endforeach
         </tbody>
@@ -26,8 +26,8 @@
 </div>
 @endsection
 
-<div id="postPopup" class="z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center">
-    <div class="p-3 w-5/12 bg-white rounded-lg shadow shadow-lg">
+<div id="postPopup" class="hidden z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center">
+    <div class="p-3 w-11/12 md:w-5/12 bg-white rounded-lg shadow shadow-lg">
         <div class="flex">
             <img id="closePostButton" src="{{ asset('assets/back.svg') }}" class="w-6" alt="">
         </div>

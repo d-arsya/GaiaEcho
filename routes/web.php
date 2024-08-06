@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/post/delete/{id}', [PostController::class,'destroy']);
     Route::get('/post/{username}/comments/{id}', [PostController::class,"comments"]);
     Route::post('/post/comments/{id}', [PostController::class,"postComment"]);
-
+    
     Route::get('/report', [ReportController::class,'index']);
     Route::post('/report', [ReportController::class,"store"]);
     Route::get('/report/delete/{id}',[ReportController::class,'destroy']);
@@ -108,6 +108,7 @@ Route::middleware(['auth'])->group(function(){
     });
 });
 
+Route::get('/post/search', [PostController::class,"search"]);
 Route::get('/', [HomeController::class,"index"]);
 Route::get('/articles', [ArticleController::class,'index']);
 Route::get('/calculator', function () {

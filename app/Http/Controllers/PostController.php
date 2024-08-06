@@ -55,4 +55,10 @@ class PostController extends Controller
         ]);
         return back();
     }
+    public function search(Request $request){
+        return view("pages.home",[
+            "active"=>"home",
+            "posts"=>Post::where('text','like','%'.$request["q"].'%')->paginate(5)
+        ]);
+    }
 }

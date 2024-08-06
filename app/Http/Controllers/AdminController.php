@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index(){
         if(Auth::user()->role=="admin"){
-            return view("admin.index",["active"=>"admin"]);
+            return view("admin.index",["active"=>"home"]);
         }else{
             return redirect("/");
         }
@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function articles(){
         if(Auth::user()->role!="admin")return redirect("/");
         $articles = Article::all();
-        $active = 'article';
+        $active = 'articles';
         return view('admin.pages.articles',compact(["articles",'active']));
     }
 }
