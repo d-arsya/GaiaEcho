@@ -1,5 +1,5 @@
 <div class="mt-4 flex flex-row mb-1 rounded-lg">
-    <img src="{{ $user->avatar == null ? asset('assets/default_avatar.png') : $user->avatar }}" alt=""
+    <img src="{{ $user->avatar == null ? asset('assets/default_avatar.png') : Storage::url($user->avatar) }}" alt=""
         class="w-12 rounded-full">
     <div class="ms-3 w-2/3">
         <a href="/profile/{{ $user->username }}" class="text-md font-bold text-black">

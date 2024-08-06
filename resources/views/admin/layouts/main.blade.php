@@ -15,10 +15,9 @@
 
 
 
-<div class="ml-56 mr-96 mt-16 p-4 pr-8 pt-8">
+<div class="md:ml-56 mt-16 md:mb-0 mb-36 p-4 pt-8">
    @yield('container')
 </div>
-@include('admin.partials.rightbar')
 
 
 

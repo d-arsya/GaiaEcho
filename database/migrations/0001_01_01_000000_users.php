@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role',['admin','user']);
+            $table->integer('point');
+            $table->enum('role',['admin','user','pengelola']);
             $table->timestamps();
         });
 

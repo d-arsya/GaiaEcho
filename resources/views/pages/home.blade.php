@@ -7,7 +7,7 @@
             <div class="my-3 w-full h-px bg-black"></div>
             <div class="flex flex-row items-center">
                 <div class="flex justify-center items-center overflow-hidden w-10 h-10 rounded-full">
-                    <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : auth()->user()->avatar }}"
+                    <img src="{{ auth()->user()->avatar == null ? asset('assets/default_avatar.png') : Storage::url(auth()->user()->avatar) }}"
                         class="w-full h-full" alt="">
                 </div>
                 <div class="relative ml-4 w-full inline">
@@ -16,10 +16,9 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
-                    <input type="text" onclick="openPost()"
+                    <input id="viewText" type="text" onclick="openPost()"
                         class="w-full block p-2 ps-5 pe-10 text-md text-gray-900 rounded-full bg-gray-100"
                         placeholder="Apa yang sedang terjadi?">
-                    </input>
 
                 </div>
             </div>
@@ -79,6 +78,7 @@
     const postPopup = document.getElementById("postPopup");
     const closePostButton = document.getElementById("closePostButton");
     const imgInput = document.getElementById("imgInput");
+    const viewText = document.getElementById("viewText");
 
     textarea.addEventListener("input", function() {
         this.style.height = "auto";
@@ -95,7 +95,11 @@
         thumbnail.src = "";
         thumbnail.parentElement.classList.add("hidden");
     });
-
+    
+    function draft() {
+        postPopup.classList.add("hidden");
+        thumbnail.parentElement.classList.add("hidden");
+    };
     function openPost() {
         postPopup.classList.remove("hidden");
         textarea.focus();

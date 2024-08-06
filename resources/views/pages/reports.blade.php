@@ -48,7 +48,7 @@
     </div>
  </div>
  <div id="locationPopup" class="hidden z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center">
-    <div class="p-3 w-5/12 bg-white rounded-lg shadow shadow-lg">
+    <div class="p-3 md:w-5/12 w-11/12 bg-white rounded-lg shadow shadow-lg">
         <div class="flex justify-between">
             <img id="closeLocation" src="{{ asset('assets/back.svg') }}" class="w-6" alt="">
             {{-- <span id="closeLocation" class="px-2 py-1 outline outline-px outline-mainGreen rounded-md text-xs hover:bg-mainGreen hover:text-white">Simpan</span> --}}

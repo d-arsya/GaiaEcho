@@ -9,9 +9,9 @@ use Carbon\Carbon;
             <img src="{{ asset('assets/task.svg') }}" alt=""
             class="w-8">
             <div>
-                <h1 class="text-md font-bold text-black">
+                <a href="/reports/{{ auth()->user()->username }}/{{ $report->id }}" class="text-md font-bold text-black">
                     {{ substr($report->title, 0, 30) }}
-                </h1>
+                </a>
                 <h2 class="text-xs text-gray-300">{{ $report->date=Carbon::parse($report->date)->translatedFormat('d F Y') }}</h2>
 
             </div>
@@ -21,7 +21,7 @@ use Carbon\Carbon;
 @endforeach
 
 <div id="postPopup" class="hidden z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center overflow-y-scroll">
-    <div class="p-3 w-5/12 bg-white rounded-lg shadow shadow-lg">
+    <div class="p-3 w-11/12 md:w-5/12 bg-white rounded-lg shadow shadow-lg">
         <div class="flex flex-row justify-between">
             <img id="closePostButton" src="{{ asset('assets/back.svg') }}" class="w-6 inline" alt="">
             <h1 class="inline ml-3 font-bold text-md" id="reportTitle"></h1>

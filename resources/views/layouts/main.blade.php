@@ -17,5 +17,6 @@
     </div>
     @include('partials.rightbar')
     @stack('scripts')
+
 </body>
 </html>

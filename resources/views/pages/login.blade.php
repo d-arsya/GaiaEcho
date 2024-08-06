@@ -39,7 +39,7 @@
                             <label for="password" class="mt-6 ml-4 block mb-1 text-sm font-medium text-gray-900">Kata Sandi</label>
                             <input type="password" name="password" id="password" placeholder="Masukkan kata sandi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-primary-600 focus:border-primary-600 block w-full py-2.5 px-4" required="">
                         </div>
-                        <a href="" class="text-end font-bold text-xs hover:underline mt-1 text-mainGreen float-end">Lupa sandi?</a>
+                        <a href="/forgot-password" class="text-end font-bold text-xs hover:underline mt-1 text-mainGreen float-end">Lupa sandi?</a>
                         <button type="submit" class="mt-6 w-full text-white bg-mainGreen font-bold rounded-full text-lg px-5 py-2 text-center">Masuk</button>
                         <p class="mt-6 text-sm text-center font-light text-gray-500">
                             Belum mempunyai akun? <a href="/register" class="font-medium text-mainGreen hover:underline">Buat sekarang</a>

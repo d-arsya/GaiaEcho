@@ -9,8 +9,6 @@
         </svg>
       </div>
     </div>
-    <div class="w-10 h-10 flex justify-center items-center rounded-full bg-gray-200">
-     <img src="{{ asset('assets/lonceng.svg') }}" class="w-6" alt="">
-    </div>
+    <a href="bg-red-600 w-min p-3 block">Logout</a>
   </div>
 </nav>
