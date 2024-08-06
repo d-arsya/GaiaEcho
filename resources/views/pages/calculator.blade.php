@@ -27,23 +27,23 @@
                 <h2 class="p-3 font-semibold">Pilih moda transportasi</h2>
                 <div class="icon-container-transportation-type w-full flex justify-around items-end mt-2">
                     <label class="icon-label">
-                        <input type="radio" name="land-transport" value="car">
+                        <input type="radio" name="land-transport" value="car" onclick="updateFuelOption()">
                         <img src="{{ asset('assets/car.svg') }}" alt="Car Icon">
                         <p class="text-center">Mobil</p>
                     </label>
                     <label class="icon-label">
-                        <input type="radio" name="land-transport" value="motor">
+                        <input type="radio" name="land-transport" value="motor" onclick="updateFuelOption()">
                         <img src="{{ asset('assets/motor-green.svg') }}" alt="Motor Icon">
                         <p class="text-center">Motor</p>
                     </label>
                     <label class="icon-label">
                         <input type="radio" name="land-transport" value="bus">
-                        <img src="{{ asset('assets/bus-green.svg') }}" alt="Bus Icon">
+                        <img src="{{ asset('assets/bus-green.svg') }}" alt="Bus Icon" onclick="updateFuelOption()">
                         <p class="text-center">Bus</p>
                     </label>
                     <label class="icon-label">
-                        <input type="radio" name="land-transport" value="train">
-                        <img src="{{ asset('assets/train-green.svg') }}" alt="Train Icon">
+                        <input type="radio" name="land-transport" value="train" onclick="updateFuelOption()">
+                        <img src="{{ asset('assets/train-green.svg') }}" alt="Train Icon" >
                         <p class="text-center">Kereta</p>
                     </label>
                 </div>
@@ -52,24 +52,24 @@
             <div class="container-fuel-type bg-white mt-5 py-2 rounded-lg shadow-md" style="border-radius: 15px;">
                 <h2 class="p-3 font-semibold">Pilih jenis bahan bakar</h2>
                 <div class="icon-container-fuel-type w-full flex justify-around items-end mt-2">
-                    <label class="icon-label">
-                        <input type="radio" name="fuel-type" value="gasoline">
-                        <img src="{{ asset('assets/gasoline.svg') }}" alt="Gasoline Icon">
+                    <label id="fuel-gasoline" class="icon-label">
+                        <input type="radio" name="fuel-type" value="gasoline" >
+                        <img src="assets/gasoline.svg" alt="Gasoline Icon">
                         <p class="text-center">Bensin</p>
                     </label>
-                    <label class="icon-label">
+                    <label id="fuel-diesel" class="icon-label">
                         <input type="radio" name="fuel-type" value="diesel">
-                        <img src="{{ asset('assets/diesel.svg') }}" alt="Diesel Icon">
+                        <img src="assets/diesel.svg" alt="Diesel Icon">
                         <p class="text-center">Diesel</p>
                     </label>
-                    <label class="icon-label">
+                    <label id="fuel-ev" class="icon-label">
                         <input type="radio" name="fuel-type" value="ev">
-                        <img src="{{ asset('assets/ev.svg') }}" alt="EV Icon">
+                        <img src="assets/ev.svg" alt="EV Icon">
                         <p class="text-center">EV</p>
                     </label>
-                    <label class="icon-label">
+                    <label id="fuel-hybrid" class="icon-label">
                         <input type="radio" name="fuel-type" value="hybrid">
-                        <img src="{{ asset('assets/hybrid.svg') }}" alt="Hybrid Icon">
+                        <img src="assets/hybrid.svg" alt="Hybrid Icon">
                         <p class="text-center">Hybrid</p>
                     </label>
                 </div>
@@ -79,10 +79,10 @@
                 <h1 class="text-xl text-center font-semibold mb-4">Kubikasi Mesin (CC)</h1>
                 <div class="relative">
                     <div class="mt-4 text-center">
-                        <span id="slider-engine-value" class="text-lg font-medium">1000</span>
+                        <span id="slider-engine-value" class="text-lg font-medium">0</span>
                         <span>CC</span>
                     </div>
-                    <input id="steps-engine" type="range" min="0" max="11" value="0" step="1"
+                    <input id="steps-engine" type="range" min="0" max="21" value="0" step="1"
                         class="w-full h-3 bg-gray-200 rounded-lg range-lg appearance-none cursor-pointer dark:bg-gray-700">
                 </div>
             </div>
