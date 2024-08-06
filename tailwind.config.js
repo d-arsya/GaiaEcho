@@ -15,14 +15,15 @@ export default {
         mainGreen:'#55D917',
         black:'#0C0C0C',
         green:{
-          1:'#caf3b7'
+          '1':'#caf3b7',
+          '2':'#3C9A10'
         },
         grey:{
           1:'#e7e7e7'
         },
       }
     },
-    
+
   },
   plugins: [],
 }

@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-            
+
         @endauth
         @foreach ($posts as $post)
             <x-post :post='$post'></x-post>
@@ -34,10 +34,10 @@
 @endsection
 @auth
 <div id="postPopup" class="hidden z-50 bg-gray-900 bg-opacity-75 inset-0 fixed flex items-center justify-center">
-    <div class="p-3 w-5/12 bg-white rounded-lg shadow shadow-lg">
+    <div class="p-3 w-11/12 md:w-5/12 bg-white rounded-lg shadow shadow-lg">
         <div class="flex justify-between">
             <img id="closePostButton" src="{{ asset('assets/back.svg') }}" class="w-6" alt="">
-            <span class="text-mainGreen">
+            <span onclick="draft()" class="text-mainGreen cursor-pointer hover:underline">
                 <img src="{{ asset('assets/pencil.svg') }}" class="w-5 inline" alt="">
                 Draft
             </span>
@@ -72,7 +72,7 @@
     </form>
     </div>
 </div>
-    
+
 @endauth
 <script>
     const textarea = document.getElementById("autoResizeTextarea");
