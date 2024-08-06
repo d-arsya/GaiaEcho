@@ -136,6 +136,7 @@ imgInput.addEventListener("change", function(event) {
 // calculation
 function getSelectedValues() {
     const landTransport = document.querySelector('input[name="land-transport"]:checked');
+    const airTransport = document.querySelector('input[name="air-class "]:checked');
     const fuelType = document.querySelector('input[name="fuel-type"]:checked');
     const labelsDistance = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200];
     const sliderDistance = document.getElementById('steps-distance');
@@ -146,7 +147,7 @@ function getSelectedValues() {
 
     const GasolineEmissions = [130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 330];
     const DieselEmissions = [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200];
-    const motorEmissions = [65, 87.5, 125, 175, 225,275]
+    const motorEmissions = [65, 65, 65, 65, 87.5,87.5, 125, 125, 175, 175,175, 225, 225, 225,275]
 
     function distanceSlider() {
         if (sliderDistance) {
@@ -232,27 +233,17 @@ function getSelectedValues() {
             emisiMesin = jarak*1.78;
             console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
         }
-    } else{
+    } else if (landTransport.value==='motor'){
         if (fuelType && (fuelType.value === 'gasoline')) {
-
             const cek = parseInt(distanceSlider());
-
             if (sliderEngine) {
                 sliderEngine.addEventListener('input', () => {
                     const engineIndex = parseInt(sliderEngine.value);
                     sliderEngineValue.textContent = labelsEngine[engineIndex];
 
-                    // Determine the emission array based on fuel type
-                    let emissionsArray;
-                    if (fuelType.value === 'gasoline') {
-                        emissionsArray = GasolineEmissions;
-                    } else if (fuelType.value === 'diesel') {
-                        emissionsArray = DieselEmissions;
-                    }
-
                     // Calculate emissions if the appropriate array is found
-                    if (emissionsArray && engineIndex >= 10) {
-                        emisiMesin = emissionsArray[engineIndex - 10] * cek;
+                    if (motorEmissions && engineIndex <= 15) {
+                        emisiMesin = motorEmissions * cek;
                     } else {
                         emisiMesin = NaN;
                     }
@@ -263,16 +254,22 @@ function getSelectedValues() {
 
                 // Initialize the emissions value
                 const initialEngineIndex = parseInt(sliderEngine.value);
-                const initialEmissionsArray = fuelType.value === 'gasoline' ? GasolineEmissions : DieselEmissions;
-                if (initialEmissionsArray && initialEngineIndex >= 10) {
-                    emisiMesin = initialEmissionsArray[initialEngineIndex - 10] * parseInt(sliderDistanceValue.textContent);
+                if (motorEmissions && initialEngineIndex <= 13) {
+                    emisiMesin = motorEmissions[initialEngineIndex] * parseInt(sliderDistanceValue.textContent);
                 } else {
-                    emisiMesin = NaN;
+                    emisiMesin = motorEmissions[14] * parseInt(sliderDistanceValue.textContent);
                 }
 
                 const iseng = sliderDistanceValue.textContent;
                 console.log("ini jarak: " + iseng + "\n" + "ini cc mesin: " + sliderEngineValue.textContent + "\n" + "emisi: " + emisiMesin);
             }}
-    }};
+            else{
+                const jarak = parseInt(distanceSlider());
+                emisiMesin = jarak*140;
+                console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+            }
+    }
+
+};
 
 
