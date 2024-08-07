@@ -106,6 +106,7 @@ class UserController extends Controller
         return redirect("login");
     }
     public function profile(Request $request,$username){
+        if($username=='Admin')return redirect('/admin/users');
         return view('pages.profile',[
             "active"=>"profile",
             "view"=>'posts',

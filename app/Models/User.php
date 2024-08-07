@@ -73,4 +73,7 @@ class User extends Authenticatable
         $reports->delete();
         User::where('id',$this->id)->delete();
     }
+    public function waste(){
+        return $this->belongsTo(Waste::class,'id','user_id')->first();
+    }
 }

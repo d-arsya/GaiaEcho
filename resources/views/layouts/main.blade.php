@@ -7,13 +7,20 @@
   @vite('resources/css/app.css')
   
 </head>
-<body class="bg-grey-1 md:p-0 pb-24">
+@if ($active=='management')
+<body class="bg-grey-1 md:p-0 pb-24 overflow-hidden">
+  @else
+  <body class="bg-grey-1 md:p-0 pb-24">
+@endif
   
   
 @include('partials.header')
 @include('partials.leftbar')
-
-<div class="md:ml-56 md:mr-96 mt-16 p-4 pr-8 pt-8">
+@if ($active=='management')
+<div class="md:ml-56 mt-16">
+  @else
+  <div class="md:ml-56 md:mr-96 mt-16 p-4 pr-8 pt-8">
+@endif
   @yield('container')
 </div>
 @include('partials.rightbar')

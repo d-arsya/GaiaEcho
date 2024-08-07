@@ -9,7 +9,9 @@ use App\Models\Followee;
 use App\Models\Like;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Recycler;
 use App\Models\Report;
+use App\Models\Waste;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -418,8 +420,15 @@ class DatabaseSeeder extends Seeder
         [
             "name" => "Pengelola",
             "avatar" => "",
-            "username" => "Pengelola",
+            "username" => "arsyadkamaluddin",
             "email" => "arsyadkamaluddin@gmail.com",
+            "role" => "pengelola"
+        ],
+        [
+            "name" => "Pengelola",
+            "avatar" => "",
+            "username" => "cobapengelola",
+            "email" => "cobapengelola@gmail.com",
             "role" => "pengelola"
         ],
     ];
@@ -1558,6 +1567,87 @@ class DatabaseSeeder extends Seeder
         ['user_id' => 5, "title" => "Air Kotor di Taman Sari", "location" => "Taman Sari, Yogyakarta", "text" => "Air di kolam sangat kotor dan bau.", "date" => "2024-07-20"]
     ];
 
+    private $wastes = [
+        [
+            "user_id" => 6,
+            "latitude" => "-7.754507351467079",
+            "longitude" => "110.40658399073226",
+            "maps" => "https://maps.app.goo.gl/riMPUPVecj22x5ej8",
+            "name" => "Bank Sampah APEL"
+        ],
+        [
+            "user_id" => 7,
+            "latitude" => "-7.739195737764924",
+            "longitude" => "110.40262717932782",
+            "maps" => "https://maps.app.goo.gl/kCAKBxdCdBp55Mk98",
+            "name" => "TPS 3R GIAAAAAT, KSM"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.744063063390935",
+            "longitude" => "110.40291629847177",
+            "maps" => "https://maps.app.goo.gl/Q5c9GCL1x6ZqspQ18",
+            "name" => "TPS Pondok"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.748278026869961",
+            "longitude" => "110.40323552018239",
+            "maps" => "https://maps.app.goo.gl/RZrQ3o4grqPTJLtWA",
+            "name" => "Bank Sampah Assalam"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.75246149623383",
+            "longitude" => "110.40153140249093",
+            "maps" => "https://maps.app.goo.gl/gBXjWsdvoiMiaieAA",
+            "name" => "BAKUL ROSOK YK"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.757329623437697",
+            "longitude" => "110.40675416601403",
+            "maps" => "https://maps.app.goo.gl/PDVpDE8tAqChAQq49",
+            "name" => "Bank Sampah Ceria"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.76200960747861",
+            "longitude" => "110.40167634376982",
+            "maps" => "https://maps.app.goo.gl/eUGRL67h6T92JrRj9",
+            "name" => "Bank Sampah Ngudi Barokah"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.755144204344683",
+            "longitude" => "110.41230001860586",
+            "maps" => "https://maps.app.goo.gl/f8GyLq6bsdHoC6ca9",
+            "name" => "TPA Tambakboyo"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.748762823855318",
+            "longitude" => "110.40756654761982",
+            "maps" => "https://maps.app.goo.gl/X9CKN1fCdcsA7n4N9",
+            "name" => "Pengelola Sampah Mandiri KASTURI"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.745441995939621",
+            "longitude" => "110.41357908727828",
+            "maps" => "https://maps.app.goo.gl/w7Pg3HupbuitTpPU6",
+            "name" => "Bank Sampah Sawo Kecik"
+        ],
+        [
+            "user_id" => 0,
+            "latitude" => "-7.737226893478216",
+            "longitude" => "110.41700029332789",
+            "maps" => "https://maps.app.goo.gl/DwxzacZk8UnWUKBS6",
+            "name" => "Bank Sampah Blotan"
+        ]
+    ];
+    
+    
 
 
 
@@ -1582,12 +1672,25 @@ class DatabaseSeeder extends Seeder
         foreach ($this->posts as $post) {
             Post::create($post);
         }
+        for ($i=0;$i<39;$i++) {
+            $date = '2024-0'.fake()->numberBetween(3,8).'-'.fake()->numberBetween(11,28);
+            Recycler::create([
+                "user_id"=>fake()->numberBetween(2,5),
+                'weight'=>fake()->numberBetween(5,30),
+                'waste_id'=>'1',
+                'created_at'=>$date,
+                'updated_at'=>$date,
+            ]);
+        }
         foreach ($this->comments as $comment) {
             Comment::create($comment);
         }
         foreach ($this->reports as $report) {
             $report['image'] = "";
             Report::create($report);
+        }
+        foreach ($this->wastes as $waste) {
+            Waste::create($waste);
         }
         foreach ($this->articles as $art) {
             Article::create([

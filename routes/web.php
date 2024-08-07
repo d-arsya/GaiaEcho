@@ -45,6 +45,7 @@ Route::middleware(['guest'])->group(function(){
 });
 Route::middleware(['auth'])->group(function(){
     Route::get('/management', function () {
+        if(auth()->user()->role=='admin')return redirect('/admin/management');
         return view('pages.management',[
             "active"=>'management'
         ]);
@@ -68,9 +69,15 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[AdminController::class,"index"]);    
     Route::get('/admin/users',[AdminController::class,"users"]);    
     Route::get('/admin/articles',[AdminController::class,"articles"]);    
+    Route::get('/admin/reports',[AdminController::class,"reports"]);    
+    Route::get('/admin/reports/accept/{id}',[AdminController::class,"accept"]);    
+    Route::get('/admin/reports/process/{id}',[AdminController::class,"process"]);    
+    Route::get('/admin/reports/finish/{id}',[AdminController::class,"finish"]);    
+    Route::get('/admin/management',[AdminController::class,"management"]);    
     Route::post('/admin/articles',[ArticleController::class,"store"]);    
     Route::post('/articles/delete',[ArticleController::class,'destroy']);
     Route::get('/pengelola',[PengelolaController::class,"index"]);    
+    Route::post('/pengelola',[PengelolaController::class,"recycler"]);    
     Route::post('/user/delete/{username}',[UserController::class,'destroy']);
     
     Route::post('/follow', function (Request $req) {

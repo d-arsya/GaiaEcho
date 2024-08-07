@@ -14,10 +14,9 @@
 
 
 
-<div class="ml-56 mr-96 mt-16 p-4 pr-8 pt-8">
+<div class="md:ml-56 mt-16 p-4 pr-8 pt-8">
    @yield('container')
 </div>
-@include('pengelola.partials.rightbar')
 
 
 

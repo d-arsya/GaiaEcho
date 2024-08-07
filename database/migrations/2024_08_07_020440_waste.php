@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recyclers',function(Blueprint $table){
+        Schema::create('wastes',function(Blueprint $table){
             $table->id();
             $table->foreignId('user_id');
-            $table->integer('weight');
-            $table->foreignId('waste_id');
+            $table->string('name');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('maps');
             $table->timestamps();
         });
     }
