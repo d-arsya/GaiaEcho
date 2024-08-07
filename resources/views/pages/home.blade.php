@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-            
+
         @endauth
         @foreach ($posts as $post)
             <x-post :post='$post'></x-post>
@@ -71,7 +71,7 @@
     </form>
     </div>
 </div>
-    
+
 @endauth
 <script>
     const textarea = document.getElementById("autoResizeTextarea");

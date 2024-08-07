@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GaiaEcho</title>
   @vite('resources/css/app.css')
+  @stack('scripts')
 </head>
 <body class="bg-grey-1">
-    
+
 
 @include('admin.partials.header')
 @include('admin.partials.leftbar')

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GaiaEcho</title>
   @vite('resources/css/app.css')
-  
 </head>
 @if ($active=='management')
 <body class="bg-grey-1 md:p-0 pb-24 overflow-hidden">
@@ -24,5 +23,6 @@
   @yield('container')
 </div>
 @include('partials.rightbar')
+
 </body>
 </html>
