@@ -136,18 +136,17 @@ imgInput.addEventListener("change", function(event) {
 // calculation
 function getSelectedValues() {
     const landTransport = document.querySelector('input[name="land-transport"]:checked');
-    const airTransport = document.querySelector('input[name="air-class "]:checked');
     const fuelType = document.querySelector('input[name="fuel-type"]:checked');
     const labelsDistance = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200];
     const sliderDistance = document.getElementById('steps-distance');
     const sliderDistanceValue = document.getElementById('slider-distance-value');
-    const labelsEngine = ["50","100", "125", "150", "200", "250", "400", "600", "800", "900", "1000", "1200", "1500", "1600", "1800", "2000", "2200", "2400", "2500", "2800", "3000", ">3000"];
+    const labelsEngine = ["50", "100", "125", "150", "200", "250", "400", "600", "800", "900", "1000", "1200", "1500", "1600", "1800", "2000", "2200", "2400", "2500", "2800", "3000", ">3000"];
     const sliderEngine = document.getElementById('steps-engine');
     const sliderEngineValue = document.getElementById('slider-engine-value');
 
     const GasolineEmissions = [130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 330];
     const DieselEmissions = [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200];
-    const motorEmissions = [65, 65, 65, 65, 87.5,87.5, 125, 125, 175, 175,175, 225, 225, 225,275]
+    const motorEmissions = [65, 65, 65, 65, 87.5, 87.5, 125, 125, 175, 175, 175, 225, 225, 225, 275];
 
     function distanceSlider() {
         if (sliderDistance) {
@@ -160,7 +159,12 @@ function getSelectedValues() {
         return sliderDistanceValue.textContent;
     }
 
-    if (landTransport.value==='car') {
+    if (!landTransport) {
+        console.error("No land transport selected");
+        return;
+    }
+
+    if (landTransport.value === 'car') {
         if (fuelType && (fuelType.value === 'gasoline' || fuelType.value === 'diesel')) {
 
             const cek = parseInt(distanceSlider());
@@ -201,39 +205,38 @@ function getSelectedValues() {
                 const iseng = sliderDistanceValue.textContent;
                 console.log("ini jarak: " + iseng + "\n" + "ini cc mesin: " + sliderEngineValue.textContent + "\n" + "emisi: " + emisiMesin);
             }
-        } else if (fuelType && (fuelType.value === 'ev' )) {
+        } else if (fuelType && (fuelType.value === 'ev')) {
             const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*50;
+            emisiMesin = jarak * 50;
             console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
-        } else{
+        } else {
             const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*100;
-            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
-        }
-    } else if (landTransport.value==='bus') {
-        if(fuelType && (fuelType.value === 'diesel' )){
-            const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*16;
-            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
-
-        } else{
-            const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*15;
-            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
-
-        }
-    } else if (landTransport.value==='train') {
-        if(fuelType && (fuelType.value === 'diesel' )){
-            const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*1.44;
-            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
-
-        } else{
-            const jarak = parseInt(distanceSlider());
-            emisiMesin = jarak*1.78;
+            emisiMesin = jarak * 100;
             console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
         }
-    } else if (landTransport.value==='motor'){
+    } else if (landTransport.value === 'bus') {
+        if (fuelType && (fuelType.value === 'diesel')) {
+            const jarak = parseInt(distanceSlider());
+            emisiMesin = jarak * 16;
+            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+
+        } else {
+            const jarak = parseInt(distanceSlider());
+            emisiMesin = jarak * 15;
+            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+        }
+    } else if (landTransport.value === 'train') {
+        if (fuelType && (fuelType.value === 'diesel')) {
+            const jarak = parseInt(distanceSlider());
+            emisiMesin = jarak * 1.44;
+            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+
+        } else {
+            const jarak = parseInt(distanceSlider());
+            emisiMesin = jarak * 1.78;
+            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+        }
+    } else if (landTransport.value === 'motor') {
         if (fuelType && (fuelType.value === 'gasoline')) {
             const cek = parseInt(distanceSlider());
             if (sliderEngine) {
@@ -243,7 +246,7 @@ function getSelectedValues() {
 
                     // Calculate emissions if the appropriate array is found
                     if (motorEmissions && engineIndex <= 15) {
-                        emisiMesin = motorEmissions * cek;
+                        emisiMesin = motorEmissions[engineIndex] * cek;
                     } else {
                         emisiMesin = NaN;
                     }
@@ -262,14 +265,14 @@ function getSelectedValues() {
 
                 const iseng = sliderDistanceValue.textContent;
                 console.log("ini jarak: " + iseng + "\n" + "ini cc mesin: " + sliderEngineValue.textContent + "\n" + "emisi: " + emisiMesin);
-            }}
-            else{
-                const jarak = parseInt(distanceSlider());
-                emisiMesin = jarak*140;
-                console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
             }
+        } else {
+            const jarak = parseInt(distanceSlider());
+            emisiMesin = jarak * 140;
+            console.log("ini jarak: " + distanceSlider() + "\n" + "emisi: " + emisiMesin);
+        }
     }
+}
 
-};
 
 
