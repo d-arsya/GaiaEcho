@@ -1,13 +1,43 @@
 {
+  "node_modules/leaflet-routing-machine/dist/leaflet.routing.icons.png": {
+    "file": "assets/leaflet.routing.icons-D1_G_SEE.png",
+    "src": "node_modules/leaflet-routing-machine/dist/leaflet.routing.icons.png"
+  },
+  "node_modules/leaflet-routing-machine/dist/routing-icon.png": {
+    "file": "assets/routing-icon-DR3Yqk3O.png",
+    "src": "node_modules/leaflet-routing-machine/dist/routing-icon.png"
+  },
+  "node_modules/leaflet/dist/images/layers-2x.png": {
+    "file": "assets/layers-2x-Bpkbi35X.png",
+    "src": "node_modules/leaflet/dist/images/layers-2x.png"
+  },
+  "node_modules/leaflet/dist/images/layers.png": {
+    "file": "assets/layers-BWBAp2CZ.png",
+    "src": "node_modules/leaflet/dist/images/layers.png"
+  },
+  "node_modules/leaflet/dist/images/marker-icon.png": {
+    "file": "assets/marker-icon-hN30_KVU.png",
+    "src": "node_modules/leaflet/dist/images/marker-icon.png"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-Do6314MT.css",
+    "file": "assets/app-CiVktBoD.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-C1-XIpUa.js",
+    "file": "assets/app-DbxyGMS8.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "css": [
+      "assets/app-C8pPs8g-.css"
+    ],
+    "assets": [
+      "assets/layers-BWBAp2CZ.png",
+      "assets/layers-2x-Bpkbi35X.png",
+      "assets/marker-icon-hN30_KVU.png",
+      "assets/leaflet.routing.icons-D1_G_SEE.png",
+      "assets/routing-icon-DR3Yqk3O.png"
+    ]
   }
 }

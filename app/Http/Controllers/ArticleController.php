@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index(){
+        if(auth()->user()->role=='admin')return redirect('/admin/articles');
         return view('pages.articles',[
             "active"=>'articles',
             "articles"=>Article::inRandomOrder()->paginate(5)

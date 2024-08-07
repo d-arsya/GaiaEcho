@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ReportController extends Controller
 {
     public function index(){
+        if(auth()->user()->role=='admin')return redirect('/admin/reports');
         return view('pages.reports',[
             "active"=>'report'
         ]);
@@ -52,7 +53,7 @@ class ReportController extends Controller
         return redirect('/report');
     }
     public function detail(Request $request,$username,$id){
-        if($username!=auth()->user()->username)return abort(403);
+        if($username!=auth()->user()->username && auth()->user()->role!='admin')return abort(403);
         $report = User::where('username',$username)->first()->reports->find($id);
         return view('pages.report',[
             "active"=>'report',

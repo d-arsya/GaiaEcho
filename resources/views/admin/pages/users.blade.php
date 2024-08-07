@@ -4,7 +4,7 @@
     <h1 class="text-center text-black font-bold text-3xl mt-3">Daftar Pengguna Aktif GaiaEcho</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 mt-12">
         
-        @foreach ($users as $user)
+        @foreach ($users->sortByDesc('point') as $user)
         
         <div class="mt-4 flex flex-row mb-1 rounded-lg">
         <img src="{{ $user->avatar == null ? asset('assets/default_avatar.png') : Storage::url($user->avatar) }}" alt=""

@@ -6,6 +6,7 @@
         <div class="px-12 md:px-4 pt-4">
             @if ($active == 'articles')
                 @include('components.recomended_articles')
+                @elseif($active == 'management')
             @elseif($active == 'report')
                 @include('components.last_reports')
             @elseif($active== 'calculator')
