@@ -63,6 +63,10 @@ class AdminController extends Controller
         return back();
     }
     public function management(){
-        dd(Waste::all());
+        $wastes = Waste::all();
+        return view('admin.pages.management',[
+            "active"=>"management",
+            "wastes"=>$wastes
+        ]);
     }
 }

@@ -39,7 +39,7 @@ $waste = Waste::all();
             })
 
             marker.on('click', function() {
-                if (userLocation) {
+                if (true) {
                     if (routingControl) {
                         map.removeControl(routingControl);
                     }
@@ -47,7 +47,7 @@ $waste = Waste::all();
                     routingControl = L.Routing.control({
                         show:false,
                         waypoints: [
-                            L.latLng(userLocation.lat, userLocation.lng),
+                            L.latLng(-7.7857224, 110.3666281,14),
                             L.latLng(location.latitude, location.longitude)
                         ],
                         routeWhileDragging: false,
@@ -89,9 +89,6 @@ $waste = Waste::all();
         function onLocationError(e) {
             alert(e.message);
         }
-
-        map.on('locationfound', onLocationFound);
-        map.on('locationerror', onLocationError);
 
         map.locate({
             setView: true,

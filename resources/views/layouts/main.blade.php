@@ -23,6 +23,7 @@
   @yield('container')
 </div>
 @include('partials.rightbar')
+@stack('scripts')
 
 </body>
 </html>

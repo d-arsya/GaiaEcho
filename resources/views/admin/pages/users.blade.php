@@ -13,7 +13,7 @@
             <a href="/profile/{{ $user->username }}" class="text-md font-bold text-black">
                 {{ substr($user->name, 0, 25) }}
             </a>
-            <h2 class="text-xs text-gray-300">{{ $user->username }}</h2> 
+            <h2 class="text-mainGreen">{{ $user->point }}</h2> 
         </div>
         <div class="flex items-center float-end">
             <form action="/user/delete/{{$user->username}}" method="post">
